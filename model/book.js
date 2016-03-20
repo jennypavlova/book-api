@@ -1,4 +1,5 @@
 //Book Model
+var restful = require('node-restful');
 var mongoose = require('mongoose');
 
 var bookSchema = {
@@ -8,8 +9,7 @@ var bookSchema = {
   },
   cover:{
     type: String,
-    required: true,
-    match: /^http:\/\//i
+    required: true
   },
   genre:{
     type: String,
@@ -22,9 +22,8 @@ var bookSchema = {
   },
   date:{
     type: Date,
-    required: true,
+    default: Date.now
   }
 };
 
-module.exports = new mongoose.Schema(bookSchema);
-module.exports.bookSchema = bookSchema;
+module.exports = restful.model('Book', bookSchema);
