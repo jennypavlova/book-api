@@ -3,18 +3,17 @@ var mongoose = require("mongoose");
 var express = require("express");
 var bodyParser = require('body-parser');
 
-//MongoDB
-mongoose.connect('mongodb://localhost/book-api');
 
-//Express
-var app = express();
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+module.exports = function(dbName) {
+  //MongoDB
+  mongoose.connect('mongodb://localhost/' +  (dbName || 'book-api'));
 
-//Routes
-app.use('/api', require('./routes/api'));
+  //Express
+  var app = express();
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
 
-// Start server
-app.listen(3000);
-console.log("API is running at port 3000");
-
+  //Routes
+  app.use('/api', require('./routes/api'));
+  return app;
+}
