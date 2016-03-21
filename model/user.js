@@ -1,15 +1,20 @@
 //User Model
-var restful = require('node-restful');
 var mongoose = require('mongoose');
 
-var userSchema = {
-  name:{
+var userSchema = new mongoose.Schema({
+  username:{
     type: String,
     required: true
-  }
+  },
   password: {
     type: String,
     required: true
+  }
+});
+
+// placeholder
+userSchema.methods.validPassword = function (password) {
+  return true;
 }
 
-module.exports = restful.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

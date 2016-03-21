@@ -15,5 +15,10 @@ module.exports = function(dbName) {
 
   //Routes
   app.use('/api', require('./routes/api'));
+
+  // Public assets
+  app.use('/', express.static('public', {
+    extensions: ["html"]
+  }));
   return app;
 }
