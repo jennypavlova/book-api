@@ -1,6 +1,7 @@
 //Dependencies
 var express = require('express');
 var router = express.Router();
+var User = require("../model/user");
 
 // Configuring Passport
 var passport = require('passport');
@@ -9,15 +10,9 @@ router.use(expressSession({secret: 'mySecretKey'}));
 router.use(passport.initialize());
 router.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
- 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 require("./book")(router);
 require("./genre")(router);

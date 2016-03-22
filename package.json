@@ -12,6 +12,7 @@
     "node-restful": "^0.2.5",
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
+    "passport-local-mongoose": "^4.0.0",
     "superagent": "1.7.2",
     "underscore": "1.5.2"
   },

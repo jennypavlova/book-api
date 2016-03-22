@@ -5,26 +5,22 @@ var User = require('../model/user');
 
 module.exports = function(router) {
 
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-        return done(null, user);
-      });
-    }
-  ));
+  passport.use(new LocalStrategy(User.authenticate()));
 
   router.post('/login', passport.authenticate('local', {
-    successRedirect: '/books',
+    successRedirect: '/book',
     failureRedirect: '/login',
     failureFlash: false
   }));
 
-  // REGISTER HERE
+  router.post('/register', function(req, res, next) {
+      User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect('/login');
+        return next();
+      });
+  });
 }

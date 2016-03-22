@@ -29,5 +29,14 @@ module.exports = function(router) {
     return next();
   });
 
+  Book.before('get', function(req, res, next) {
+    // is user logged in? - placeholder
+    console.log(JSON.stringify(req.user));
+    if (!req.user) {
+      return res.redirect("/login");
+    }
+    return next();
+  });
+
   Book.register(router, '/book');
 }
