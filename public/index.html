@@ -47,7 +47,7 @@
   </div>
   <div class="form-group">
     <label for="genre">Genre:</label>
-    <input type="text" name="genre" class="form-control" id="genre" placeholder="Genre"><br/>
+    <select class="form-control" id="genre"></select>
   </div>
   <div class="form-group">
       <label for="pagecount">Page count:</label>
@@ -55,18 +55,27 @@
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
-
-<!--    <div class="form-group">
-    <form method="POST" action="/api/book" enctype="multipart/form-data" role="form">
-      <label for="name">Name:</label>
-      <input type="text" name="name"><br/>
-      <label>Genre:</label>
-      <input type="text" name="genre"><br/>
-      <label>Page count:</label>
-      <input type="number" name="pageCount"><br/>
-      <input type="file" name="cover">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form> -->
-
+  <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
+  <script type="text/javascript">
+      var contentString = "";
+      $.ajax({
+         url: "/api/book",
+         dataType: "json",
+         type: 'get',
+         success: function(data) {
+            console.log( 'Got books:', JSON.stringify(data) );
+            data.forEach(function(book){
+               contentString +=
+                '<option>' + book.genre + '</option>' ;
+            });
+            $("#genre").html(contentString);     
+            console.log(contentString);
+         },
+         error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log('error', errorThrown);
+         }
+      });
+  </script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </body>
 </html>
