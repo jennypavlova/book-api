@@ -59,14 +59,14 @@
   <script type="text/javascript">
       var contentString = "";
       $.ajax({
-         url: "/api/book",
+         url: "/api/genre",
          dataType: "json",
          type: 'get',
          success: function(data) {
-            console.log( 'Got books:', JSON.stringify(data) );
-            data.forEach(function(book){
+            console.log( 'Got ganres:', JSON.stringify(data) );
+            data.forEach(function(genre){
                contentString +=
-                '<option>' + book.genre + '</option>' ;
+                '<option>' + genre.name + '</option>' ;
             });
             $("#genre").html(contentString);     
             console.log(contentString);
