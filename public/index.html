@@ -39,15 +39,15 @@
   <form method="POST" action="/api/book" enctype="multipart/form-data" role="form">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="name" class="form-control" id="name" placeholder="name">
+    <input name="name" type="name" class="form-control" id="name" placeholder="Name">
   </div>
   <div class="form-group">
-    <label for="cover">File input</label>
-    <input type="file" id="cover">
+    <label for="file">File input</label>
+    <input type="file" id="cover" name="cover">
   </div>
   <div class="form-group">
     <label for="genre">Genre:</label>
-    <input type="text" name="genre" class="form-control" id="genre" placeholder="Password"><br/>
+    <input type="text" name="genre" class="form-control" id="genre" placeholder="Genre"><br/>
   </div>
   <div class="form-group">
       <label for="pagecount">Page count:</label>
