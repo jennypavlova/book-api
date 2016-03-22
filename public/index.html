@@ -1,7 +1,72 @@
-<form method="POST" action="/api/book" enctype="multipart/form-data">
-  <label>Name:</label><input type="text" name="name"><br/>
-  <label>Genre:</label><input type="text" name="genre"><br/>
-  <label>Page count:</label><input type="number" name="pageCount"><br/>
-  <input type="file" name="cover">
-  <input type="submit">
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Home</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+   <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+         <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Books</a>
+         </div>
+   
+         <!-- Collect the nav links, forms, and other content for toggling -->
+         <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+               <li><a href="/books">Books list</a></li>
+               <li><a href="/login.html">Log in</a></li>
+               <li><a href="/register">Register</a></li>
+               <li class="active"><a href="/">Uplod a Book</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+               <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+               </div>
+               <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            
+         </div><!-- /.navbar-collapse -->
+      </div>
+   </nav>
+  <form method="POST" action="/api/book" enctype="multipart/form-data" role="form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="name" class="form-control" id="name" placeholder="name">
+  </div>
+  <div class="form-group">
+    <label for="cover">File input</label>
+    <input type="file" id="cover">
+  </div>
+  <div class="form-group">
+    <label for="genre">Genre:</label>
+    <input type="text" name="genre" class="form-control" id="genre" placeholder="Password"><br/>
+  </div>
+  <div class="form-group">
+      <label for="pagecount">Page count:</label>
+      <input type="number" class="form-control" id="pagecount" placeholder="Page Count" name="pageCount"><br/>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
+
+<!--    <div class="form-group">
+    <form method="POST" action="/api/book" enctype="multipart/form-data" role="form">
+      <label for="name">Name:</label>
+      <input type="text" name="name"><br/>
+      <label>Genre:</label>
+      <input type="text" name="genre"><br/>
+      <label>Page count:</label>
+      <input type="number" name="pageCount"><br/>
+      <input type="file" name="cover">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form> -->
+
+</body>
+</html>

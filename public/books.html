@@ -5,7 +5,37 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-   <h1>Books</h1>
+   <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+         <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Books</a>
+         </div>
+   
+         <!-- Collect the nav links, forms, and other content for toggling -->
+         <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+               <li class="active"><a href="#">Books list</a></li>
+               <li><a href="/login.html">Log in</a></li>
+               <li><a href="/register">Register</a></li>
+               <li><a href="/">Uplod a Book</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+               <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+               </div>
+               <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            
+         </div><!-- /.navbar-collapse -->
+      </div>
+   </nav>
    <div id="books"></div>
    <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
    <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -25,11 +55,13 @@
             console.log( 'Got books:', JSON.stringify(data) );
             data.forEach(function(book){
                contentString +=
-                 '<div class="book col-md-5">' +
-                    '<p> Name <b>'+ book.name +'</b></p>' +
-                    '<p> Cover </p> <img src="' + coverPath + book.cover + '">' +
-                    '<div> Genre: ' + book.genre + '</div>' +
-                    '<div> Page count: ' + book.pageCount + '</div>' +
+                 '<div class="book  col-xs-3 col-sm-3 col-md-3 col-lg-3">' +
+                     '<div class="thumbnail">' +
+                       '<p class="caption" > Name <b>'+ book.name +'</b></p>' +
+                       '<div class = "thumbnail"><img src="' + coverPath + book.cover + '"> </div>' +
+                       '<div class="caption" > Genre: ' + book.genre + '</div>' +
+                       '<div class="caption" > Page count: ' + book.pageCount + '</div>' +
+                     '</div>'+
                  '</div>';
             });
             $("#books").html(contentString);     
