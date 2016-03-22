@@ -20,5 +20,8 @@ module.exports = function(dbName) {
   app.use('/', express.static('public', {
     extensions: ["html"]
   }));
+
+  // Media assets
+  app.use('/media', express.static('media'));
   return app;
 }

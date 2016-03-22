@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Books</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+   <h1>Books</h1>
+   <div id="books"></div>
+   <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <script type="text/javascript">
+      var coverPath = "/media/covers/";
+      var loginUrl = "/login";
+      var contentString = "";
+      var query = {
+         sort: "-dateCreated"
+      };
+
+      $.ajax({
+         url: "/api/book?" + $.param(query),
+         dataType: "json",
+         type: 'get',
+         success: function(data) {
+            console.log( 'Got books:', JSON.stringify(data) );
+            data.forEach(function(book){
+               contentString +=
+                 '<div class="book col-md-5">' +
+                    '<p> Name <b>'+ book.name +'</b></p>' +
+                    '<p> Cover </p> <img src="' + coverPath + book.cover + '">' +
+                    '<div> Genre: ' + book.genre + '</div>' +
+                    '<div> Page count: ' + book.pageCount + '</div>' +
+                 '</div>';
+            });
+            $("#books").html(contentString);     
+         },
+         error: function (XMLHttpRequest, textStatus, errorThrown) {
+            if (XMLHttpRequest.status == 401) {
+               window.location = loginUrl;
+            }
+         }
+      });
+   </script>
+
+</body>
+</html>

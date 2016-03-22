@@ -8,7 +8,7 @@ module.exports = function(router) {
 
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '/home/lost/Desktop/backend/media/covers/');
+      cb(null, '/home/lost/work/backend/media/covers/');
     },
     filename: function (req, file, cb) {
       cb(null, getFilename(req, file));
@@ -30,10 +30,10 @@ module.exports = function(router) {
   });
 
   Book.before('get', function(req, res, next) {
-    // is user logged in? - placeholder
-    console.log(JSON.stringify(req.user));
     if (!req.user) {
-      return res.redirect("/login");
+      var error = new Error();
+      error.status = 401;
+      return next(error);
     }
     return next();
   });
