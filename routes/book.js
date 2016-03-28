@@ -8,7 +8,7 @@ module.exports = function(router) {
 
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '/home/lost/work/backend/media/covers/');
+      cb(null, 'media/covers/');
     },
     filename: function (req, file, cb) {
       cb(null, getFilename(req, file));
