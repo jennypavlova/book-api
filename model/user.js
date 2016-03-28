@@ -16,9 +16,4 @@ var userSchema = new mongoose.Schema({
 // passportjs plugin
 userSchema.plugin(passportLocalMongoose);
 
-// placeholder
-userSchema.methods.validPassword = function (password) {
-  return true;
-}
-
 module.exports = mongoose.model('User', userSchema);
