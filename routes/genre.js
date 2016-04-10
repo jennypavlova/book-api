@@ -4,6 +4,13 @@ module.exports = function(router) {
   var Genre = require('../model/genre');
     
   //Routes
-  Genre.methods(['get']);
-  Genre.register(router, '/genre');
+  router.get('/genre', function(req, res, next) {
+    Genre.find({}, function(err, genres) {
+      if (err) {
+        return next(err);
+      }
+      res.json(genres);
+      return next();
+    });
+  });
 }

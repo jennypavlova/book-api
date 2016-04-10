@@ -1,5 +1,4 @@
 //Genre Model
-var restful = require('node-restful');
 var mongoose = require('mongoose');
 
 var genreSchema = {
@@ -9,4 +8,4 @@ var genreSchema = {
   }
 };
 
-module.exports = restful.model('Genre', genreSchema);
+module.exports = mongoose.model('Genre', genreSchema);

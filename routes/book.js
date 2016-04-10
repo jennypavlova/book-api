@@ -22,21 +22,42 @@ module.exports = function(router) {
   var Book = require('../model/book');
     
   //Routes
-  Book.methods(['get', 'post','put', 'delete']);
-  Book.before('post', upload.single('cover'));
-  Book.before('post', function(req, res, next) {
-    req.body.cover = getFilename(req, req.file);
-    return next();
-  });
-
-  Book.before('get', function(req, res, next) {
-    if (!req.user) {
-      var error = new Error();
-      error.status = 401;
-      return next(error);
+  router.post('/book', [
+    upload.single('cover'),
+    function(req, res, next){
+      req.body.cover = getFilename(req, req.file);
+      Book.create(req.body, function(err, books){
+        if(err){
+          console.log(JSON.stringify(err))
+          return next(err);
+        }
+        res.json(books);
+        console.log(books);
+        return next();
+      });
     }
-    return next();
-  });
+  ]);
 
-  Book.register(router, '/book');
+  // Book.before('post', upload.single('cover'));
+  // Book.before('post', function(req, res, next) {
+  //   req.body.cover = getFilename(req, req.file);
+  //   return next();
+  // });
+
+  // Book.before('get', function(req, res, next) {
+  //   if (!req.user) {
+  //     var error = new Error();
+  //     error.status = 401;
+  //     return next(error);
+  //   }
+  //   return next();
+  // });
+
+  // Book.after('get', function(req, res, next) {
+  //   console.log(res.locals.bundle.length);
+  //   console.log(res.locals.bundle);
+  //   var booksPerPage = res.locals.bundle.length
+  //   next(); // Don't forget to call next!
+// });
+  // Book.register(router, '/book');
 }

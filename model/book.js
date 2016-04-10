@@ -1,5 +1,4 @@
 //Book Model
-var restful = require('node-restful');
 var mongoose = require('mongoose');
 
 var bookSchema = {
@@ -26,4 +25,4 @@ var bookSchema = {
   }
 };
 
-module.exports = restful.model('Book', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);
